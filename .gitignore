@@ -22,3 +22,9 @@ go.work
 
 old/
 newold/
+*.dll
+*.h
+dotnet/obj
+dotnet/bin
+
+RclonEST-TEST.cs

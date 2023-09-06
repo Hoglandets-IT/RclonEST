@@ -1,0 +1,752 @@
+remoteTypes:
+  amazonClouddrive:
+  azureBlob:
+  b2:
+  box:
+  cache:
+  chunker:
+  combine:
+  compress:
+  crypt:
+  drive:
+  dropbox:
+  fichier:
+  filefabric:
+  ftp:
+  googleCloudStorage:
+  googlePhotos:
+  hasher:
+  hdfs:
+  hidrive:
+  http:
+  internetArchive:
+  jottacloud:
+  koofr:
+  local:
+  mailru:
+  mega:
+  memory:
+  netstorage:
+  oneDrive:
+  openDrive:
+  oracleObjectStorage:
+  pcloud:
+  pikpak:
+  premiumIzeme:
+  protondrive:
+  putio:
+  qingstor:
+  s3:
+  seafile:
+  sftp:
+  sharefile:
+  sia:
+  smb:
+  storj:
+  sugarsync:
+  swift:
+  union:
+  uptobox:
+  webdav:
+  yandex:
+  zoho:
+endpoints:
+  backend:
+    command:
+      description: "Runs a backend command"
+      args:
+        command:
+          name: "Command"
+          description: "A string with the command name"
+          type: string
+        fs:
+          name: "Remote"
+          description: "A remote name string, e.g. \"drive\""
+          type: string
+        arg:
+          type: list,string
+          name: "Arguments"
+          description: "A list of arguments to pass to the command"
+        opt:
+          type: dict,string,string
+          name: "Options"
+          description: "A dictionary of options to pass to the command"
+  cache:
+    expire:
+      description: "Purge a remote from the cache backend. Supports either directory or file"
+      args:
+        remote:
+          name: "Remote"
+          description: "A remote name string, e.g. \"remote:drive/\""
+          type: string
+        withData:
+          name: WithData
+          description: "true/false to delete cached data (chunks) as well (optional)"
+          type: bool
+    fetch:
+      description: "Ensure the specified cchinks are cached on disk"
+      args: {}
+    stats:
+      description: "Print cache statistics"
+      args: {}
+  config:
+    create:
+      description: "Create a configuration for the remote"
+      args:
+        name:
+          name: "Name"
+          description: "Name of the remote"
+          type: string
+        parameters:
+          name: "Parameters"
+          description: "Parameters for the remote"
+          type: dict,string,string
+        type:
+          name: "Type"
+          description: "Type of the remote"
+          type: string
+        opt:
+          name: "Options"
+          description: "Options for the remote"
+          type: dict,string,bool
+    delete:
+      description: "Delete an existing remote"
+      args:
+        name:
+          name: "Name"
+          description: "Name of the remote"
+          type: string
+    dump:
+      description: "Dump the configuration to a json object"
+      args: {}
+    get:
+      description: "Get the value for a config entry"
+      args:
+        name:
+          name: "Name"
+          description: "Name of the config item"
+          type: string
+    listremotes:
+      description: "List all configured remotes"
+      args: {}
+    password:
+      description: "Set a password for a remote (deprecated)"
+      args:
+        name:
+          name: "Name"
+          description: "Name of the remote"
+          type: string
+        parameters:
+          name: "Parameters"
+          description: "Parameters for the remote"
+          type: dict,string,string
+    providers:
+      description: "List in JSON format all the providers and options"
+      args: {}
+    setpath:
+      description: "Set a path to the config file"
+      args:
+        path:
+          name: "Path"
+          description: "Path to the config file"
+          type: string
+    update:
+      description: "Update the configuration for a remote"
+      args:
+        name:
+          name: "Name"
+          description: "Name of the remote"
+          type: string
+        parameters:
+          name: "Parameters"
+          description: "Parameters for the remote"
+          type: dict,string,string
+        opt:
+          name: "Options"
+          description: "Options for the remote"
+          type: dict,string,bool
+  core:
+    bwlimit:
+      description: "Set the bandwidth limit in use"
+      args:
+        rate:
+          name: "Rate"
+          description: "Rate, e.g. 1M, 100k, 10M"
+          type: string
+    command:
+      description: "Run a rclone terminal command over rc"
+      args:
+        command:
+          name: "Command"
+          description: "A string with the command name"
+          type: string
+        arg:
+          name: "Arguments"
+          description: "A list of arguments to pass to the command"
+          type: list,string
+        opt:
+          name: "Options"
+          description: "A dictionary of options to pass to the command"
+          type: dict,string,string
+        returnType:
+          name: "ReturnType"
+          description: "The type of the return value"
+          type: string
+    gc:
+      description: "Runs a garbage collection"
+      args: {}
+    group-list:
+      description: "List all the stats groups currently in memory"
+      args: {}
+    memstats:
+      description: "Prints the memory stats"
+      args: {}
+    obscure:
+      description: "Obscure a passed in string"
+      args:
+        clear:
+          name: "Clear"
+          description: "String to obscure"
+          type: string
+    pid:
+      description: "Return the PID of the current process"
+      args: {}
+    quit:
+      description: "Shut down the rclone server"
+      args:
+        exitCode:
+          name: "ExitCode"
+          description: "The exit code to return"
+          type: int
+    stats:
+      description: "Prints the stats information"
+      args:
+        group:
+          name: "Group"
+          description: "The name of the stats group to retrieve"
+          type: string
+    stats-delete:
+      description: "Deletes the stats group"
+      args:
+        group:
+          name: "Group"
+          description: "The name of the stats group to delete"
+          type: string
+    stats-reset:
+      description: "Resets the counters, errors and finished transfers for a given group or all"
+      args:
+        group:
+          name: "Group"
+          description: "The name of the stats group to reset"
+          type: string
+    transferred:
+      description: "Return stats about finished transfers"
+      args:
+        group:
+          name: "Group"
+          description: "The name of the stats group to retrieve"
+          type: string
+    version:
+      description: "Shows the current version of rclone and the go runtime"
+      args: {}
+  debug:
+    set-block-profile-rate:
+      description: "Set runtime.SetBlockProfileRate for blocking profiling"
+      args:
+        rate:
+          name: "Rate"
+          description: "Rate, e.g. 1, 100, 1000"
+          type: int
+    set-gc-percent:
+      description: "Call runtime/debug.SetGCPercent for setting the garbage collection target percentage."
+      args:
+        rate:
+          name: "Rate"
+          description: "Rate, e.g. 1, 100, 1000"
+          type: int
+    set-mutex-profile-fraction:
+      description: "Set runtime.SetMutexProfileFraction for mutex profiling"
+      args:
+        rate:
+          name: "Rate"
+          description: "Rate, e.g. 1, 100, 1000"
+          type: int
+    set-soft-memory-limit:
+      description: "Call runtime/debug.SetMemoryLimit for setting a soft memory limit for the runtime."
+      args:
+        mem-limit:
+          name: "MemLimit"
+          description: "Memory limit, e.g. 1G, 100M, 10G"
+          type: string
+  fscache:
+    clear:
+      description: "Clears the filesystem cache"
+      args: {}
+    entries:
+      description: Returns the number of entries in the fs cache
+      args: {}
+  job:
+    list:
+      description: "List all running jobs"
+      args: {}
+    status:
+      description: "Return the status of a job"
+      args:
+        jobid:
+          name: "JobID"
+          description: "Job ID to return status for"
+          type: int
+    stop:
+      description: "Stop a running job"
+      args:
+        jobid:
+          name: "JobID"
+          description: "Job ID to stop"
+          type: int
+    stopgroup:
+      description: "Stop all running jobs in a group"
+      args:
+        group:
+          name: "Group"
+          description: "Group to stop"
+          type: string
+  mount:
+    listmounts:
+      description: "List all mounted remotes"
+      args: {}
+    mount:
+      description: Create a new mount point
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to mount"
+          type: string
+        mountPoint:
+          name: "MountPoint"
+          description: "Path to mount the remote on (valid path on the local machine)"
+          type: string
+        mountType:
+          name: "MountType"
+          description: "Specify the mount implementation (mount, cmount, mount2)"
+          type: string
+        mountOpt:
+          name: "MountOptions"
+          description: "Json object with mount options"
+          type: json
+        vfsOpt:
+          name: VfsOptions
+          description: "Json object with VFS options"
+          type: json
+    types:
+      description: Show all possible mount types
+      args: {}
+    unmount:
+      description: "Unmount a mount point"
+      args:
+        mountPoint:
+          name: "MountPoint"
+          description: "Path to the mount point"
+          type: string
+    unmountall:
+      description: "Unmount all mount points"
+      args: {}
+  operations:
+    about:
+      description: "Return the space used on the remote"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to get quota information about"
+          type: string
+    cleanup:
+      description: "Clean up the trashed files in the remote or path"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to clean"
+          type: string
+    copyfile:
+      description: "Copy a file between filesystems"
+      args:
+        srcFs:
+          name: SourceRemote
+          description: "Source remote to copy from"
+          type: string
+        srcRemote:
+          name: SourcePath
+          description: "Source path to copy from"
+          type: string
+        dstFs:
+          name: DestinationRemote
+          description: "Destination remote to copy to"
+          type: string
+        dstRemote:
+          name: DestinationPath
+          description: "Destination path to copy to"
+          type: string
+    copyurl:
+      description: "Copy url content to dest"
+      args:
+        url:
+          name: "URL"
+          description: "URL to fetch"
+          type: string
+        fs:
+          name: DestinationRemote
+          description: "Destination remote to copy to"
+          type: string
+        remote:
+          name: DestinationPath
+          description: "Destination path to copy to"
+          type: string
+        autoFilename:
+          name: AutomaticFilename
+          description: "Set the destination filename from the URL"
+          type: bool
+    delete:
+      description: "Remove files in a path"
+      args:
+        fs:
+          name: "RemoteString"
+          description: "The complete string, e.g. remote:/path/to/files"
+          type: string
+    deletefile:
+      description: "Remove a single file from remote"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to delete file from"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to file to delete"
+          type: string
+    fsinfo:
+      description: "Print filesystem info for the remote"
+      args:
+        fs:
+          name: "RemoteString"
+          description: "RemoteString, e.g. remote:/path to print info about"
+          type: string
+    list:
+      description: "List the files in a given remote/path"
+      args:
+        fs:
+          name: "Remote"
+          description: "The remote to list"
+          type: string
+        remote:
+          name: "Path"
+          description: "The path to list on the remote"
+          type: string
+        opt:
+          name: "ListOptions"
+          description: "Dictionary object with list options"
+          type: dict,string,string
+    mkdir:
+      description: "Create a folder on the remote"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to create directory on"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to directory to create"
+          type: string
+    movefile:
+      description: "Move a file or directory from source remote to destination remote"
+      args:
+        srcFs:
+          name: "SourceRemote"
+          description: "Source remote to move file from"
+          type: string
+        srcRemote:
+          name: "SourcePath"
+          description: "Source path to move file from"
+          type: string
+        dstFs:
+          name: "DestinationRemote"
+          description: "Destination remote to move file to"
+          type: string
+        dstRemote:
+          name: "DestinationPath"
+          description: "Destination path to move file to"
+          type: string
+    publiclink:
+      description: "Create a public link to the remote path (if possible)"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to create public link to"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to create public link to"
+          type: string
+    purge:
+      description: "Remove a directory/container and all of its contents"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to purge"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to purge"
+          type: string
+    rmdir:
+      description: "Remove an empty dir/container"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to remove directory from"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to directory to remove"
+          type: string
+    rmdirs:
+      description: "Remove all empty directories in the path"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to remove directories from"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to directories to remove"
+          type: string
+        leaveRoot:
+          name: LeaveRoot
+          description: "Don't remove the root directory"
+          type: bool
+    size:
+      description: "Count the number of bytes and files in the remote"
+      args:
+        fs:
+          name: "RemotePath"
+          description: "Remote to get information about, e.g. remote:/path/to/files"
+          type: string
+    stat:
+      description: Get information about the supplied file or directory
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to get information about"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to file or directory to get information about"
+          type: string
+        opt:
+          name: "StatOptions"
+          description: "Dictionary object with stat options"
+          type: dict,string,string
+    uploadfile:
+      description: "Upload a file using multipart/form-data"
+      args:
+        fs:
+          name: "Remote"
+          description: "Remote to upload file to"
+          type: string
+        remote:
+          name: "Path"
+          description: "Path to file to upload"
+          type: string
+        file:
+          name: "File"
+          description: "File to upload"
+          type: string
+        opt:
+          name: "UploadOptions"
+          description: "Dictionary object with upload options"
+          type: dict,string,string
+  options:
+    blocks:
+      description: "List all the option blocks"
+      args: {}
+    get:
+      description: "Get all the global options"
+      args: {}
+    local:
+      description: "Get currently active config for this call"
+      args: {}
+    set:
+      description: "Set an option"
+      args: {}
+
+  pluginsctl:
+    addPlugin:
+      description: "Add a plugin from an URL"
+      args:
+        url:
+          name: "PluginUrl"
+          description: "Plugin url to add"
+          type: string
+    getPluginsForType:
+      description: Shows all possible plugins by mime type
+      args:
+        type:
+          name: "MimeType"
+          description: "Mime type to get plugins for"
+          type: string
+        pluginType:
+          name: "PluginType"
+          description: "Plugin type to get plugins for, eg. DASHBOARD/FILE_HANDLER/TERMINAL"
+          type: string
+    listPlugins:
+      description: "List the loaded plugins"
+      args: {}
+    listTestPlugins:
+      description: "List the test plugins"
+      args: {}
+    removePlugin:
+      description: "Remove a plugin"
+      args:
+        name:
+          name: "PluginName"
+          description: "Plugin name to remove"
+          type: string
+    removeTestPlugin:
+      description: "Remove a test plugin"
+      args:
+        name:
+          name: "PluginName"
+          description: "Plugin name to remove"
+          type: string
+  rc:
+    error:
+      description: Returns an error with the input as a part of the error string
+      args: {}
+    list:
+      description: "List all registered remote control commands as a json map"
+      args: {}
+    noop:
+      description: "Echo back the input arguments to the output"
+      args: {}
+    noopauth:
+      description: "Echo back the input arguments to the output (Requires authentication)"
+      args: {}
+
+  sync:
+    bisync:
+      description: "Run a bilateral sync between two paths/remotes/filesystems"
+      args:
+        path1:
+          name: "PathOne"
+          description: "Complete path (remote:/path) to the first party"
+          type: string
+        path2:
+          name: "PathTwo"
+          description: "Complete path (remote:/path) to the second party"
+          type: string
+        dryRun:
+          name: "DryRun"
+          description: "Do not change anything"
+          type: bool
+        resync:
+          name: "Resync"
+          description: "Force sync even if nothing has changed"
+          type: bool
+        checkAccess:
+          name: "CheckAccess"
+          description: "Abort if RCLONE_TEST files are not found on both filesystems"
+          type: bool
+        maxDelete:
+          name: "MaxDelete"
+          description: "Abort sync if deletes is above this threshold percentage"
+          type: int
+        force:
+          name: "Force"
+          description: "Force sync despite any errors"
+          type: bool
+        checkSync:
+          name: CheckSync
+          description: "true by default, false disables comparison of final listings, only will skip sync and only compare listings from the last runtime."
+          type: string
+        removeEmptyDirs:
+          name: "RemoveEmptyDirs"
+          description: "Remove empty directories"
+          type: bool
+        filtersFile:
+          name: "FiltersFile"
+          description: "Path to a file containing filters"
+          type: string
+        workdir:
+          name: "WorkDir"
+          description: "Server directory for history files (default: /home/ncw/.cache/rclone/bisync)"
+          type: string
+        noCleanup:
+          name: "NoCleanup"
+          description: "Do not remove history files after sync"
+          type: bool
+    copy:
+      description: "Copy a directory between source remote and destination remote"
+      args:
+        srcFs:
+          name: "SourceRemoteString"
+          description: "Complete path (remote:/path) to the source filesystem"
+          type: string
+        dstFs:
+          name: "DestinationRemoteString"
+          description: "Complete path (remote:/path) to the destination filesystem"
+          type: string
+        createEmptySrcDirs:
+          name: "CreateEmptySrcDirs"
+          description: "Create empty source dirs on destination if set"
+          type: bool
+    move:
+      description: "Move a directory from soruce remote to destination remote"
+      args:
+        srcFs:
+          name: "SourceRemoteString"
+          description: "Complete path (remote:/path) to the source filesystem"
+          type: string
+        dstFs:
+          name: "DestinationRemoteString"
+          description: "Complete path (remote:/path) to the destination filesystem"
+          type: string
+        createEmptySrcDirs:
+          name: "CreateEmptySrcDirs"
+          description: "Create empty source dirs on destination if set"
+          type: bool
+        deleteEmptySrcDirs:
+          name: "DeleteEmptySrcDirs"
+          description: "Delete empty source dirs after move if set"
+          type: bool
+    sync:
+      description: "Sync a directory between source and destination filesystem"
+      args:
+        srcFs:
+          name: "SourceRemoteString"
+          description: "Complete path (remote:/path) to the source filesystem"
+          type: string
+        dstFs:
+          name: "DestinationRemoteString"
+          description: "Complete path (remote:/path) to the destination filesystem"
+          type: string
+        createEmptySrcDirs:
+          name: "CreateEmptySrcDirs"
+          description: "Create empty source dirs on destination if set"
+          type: bool
+  vfs:
+    forget:
+      description: Forget files or directories in the directory cache
+      args: {}
+    list:
+      description: "List all the cached files/virtual directories"
+      args: {}
+    poll-interval:
+      description: "Interval to poll the cache for stale objects"
+      args:
+        interval:
+          name: "Interval"
+          description: "Interval to poll the cache for stale objects"
+          type: string
+    refresh:
+      description: "Reads the directories for the specified paths and freshens the directory cache"
+      args: {}
+    stats:
+      description: "Prints cache statistics"
+      args: {}

@@ -1,5 +1,6 @@
-# rclone-go
-Rclone HTTP Api Client
+![RclonEST Logo](./resources/img/rclonest.png)
+
+REST api client for the Rclone RC api for various languages
 
 ## Usage
 
@@ -52,3 +53,4 @@ All commands are implemented as structs with a name based on the path of the com
 If you pass data to the "JsonData" field of a struct, that data will be used instead of the manual fields. Some structs will only have the JsonData field specified, this data will always be passed into the body of the command even when the specific command doesn't have any parameters (e.g. ConfigListremotes)
 
 You can find a complete documentation of the available commands and parameters at https://rclone.org/rc/#rc-commands
+

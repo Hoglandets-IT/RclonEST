@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <authors>Höglandets IT</authors>
+        <copyright>Copyright © 2022 Höglandets IT</copyright>
+        <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/Hoglandets-IT/RclonEST</PackageProjectUrl>
+        <Description>Cross-platform client for RClone</Description>
+        <TargetFramework>net6.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSource>True</IncludeSource>
+        <PackageTags>Frends</PackageTags>
+        <!-- <OutputType>exe</OutputType> -->
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.0.1</Version>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>Hoglandet.Lib.RclonEST</PackageId>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/Hoglandets-IT/RclonEST</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+        <PackageReference Include="REstSharp" Version="110.2.0" />
+        <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    </ItemGroup>
+    
+    
+</Project>
